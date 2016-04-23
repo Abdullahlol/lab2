@@ -1,0 +1,13 @@
+import csv
+import time
+max={i:0 for i in range(1, 13)}
+
+with open('aapl.csv', 'r') as csvfile:
+	spamreader = csv.DictReader(csvfile)
+	for row in spamreader:
+		#print(row['Close'])
+		date = time.strptime(row['Date'], "%Y-%m-%d")
+		current = float(row['Close'])
+		if current>max[date.tm_mon]:
+			max[date.tm_mon] = current
+print(max)
